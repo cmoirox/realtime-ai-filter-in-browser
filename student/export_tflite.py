@@ -44,7 +44,7 @@ def main() -> None:
 
     m = create(args.size, not args.no_full_res_skip)
     if args.weights:
-        sd = torch.load(args.weights, map_location="cpu")
+        sd = torch.load(args.weights, map_location="cpu", weights_only=True)
         if is_legacy_state_dict(sd):
             print("legacy checkpoint: renaming keys")
             sd = convert_legacy_state_dict(sd)

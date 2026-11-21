@@ -54,7 +54,7 @@ npm run models     # downloads the released weights + MediaPipe Face Landmarker 
 npm run dev        # open the printed URL; use a tunnel (e.g. cloudflared) or mkcert for HTTPS on a phone
 ```
 
-URL options: `?video=clip.mp4` (a file instead of the camera), `?pixel=0` (turn off the low-res "pixel" filter), `?zones=0`, `?faces=3`.
+URL options: `?video=clip.mp4` (a file instead of the camera), `?pixel=1` (low-res "pixel" filter that hides seams), `?eyelids=0`, `?zones=0`, `?faces=3`.
 
 Offline, on a video file (Python):
 
@@ -118,6 +118,7 @@ exports/   exported .tflite files
 ## Limitations
 
 - Grey and white hair often comes out brown or blond, and bald heads can get hair (or the reverse).
+- The head model always draws open eyes. Blinks and winks are drawn on top as eyelids in the restyled skin colour, and eyes kept closed for more than 5 s are reopened.
 - Sunglasses smear, and thin glasses are sometimes dropped. Light stubble tends to be shaved off.
 - Heads looking down, and faces lost by the landmark detector (full profile, very small, heavy occlusion), are not restyled.
 - Measured only on iPhones with Safari 26. Some Android and Windows laptops (Chrome) ran at 6–8 fps for reasons that are not yet understood.

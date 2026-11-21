@@ -81,7 +81,8 @@ Every frame:
 2. Run MediaPipe Face Landmarker (up to 5 faces), compute the aligned square of each face, and smooth it adaptively over time: heavily when the head is still, lightly when it moves, so there's no lag.
 3. Run the zones model on the frame. Silhouette = max(hair, skin) minus occluders. Occluders are min-filtered over 4 neighbours, because speckled red on cheeks and beards used to punch holes in the face. Hair and skin are averaged with the previous frame.
 4. For each face: warp the square to 256², run the head model, multiply by a soft super-elliptic edge and by the silhouette (warped into the square), drop bluish fringes, and warp back.
-5. Optionally apply a "pixel" filter (160² nearest-neighbour, 24 levels per channel, 4×4 Bayer dithering). It hides the remaining seams and costs 2–8 ms.
+5. Closed eyes: the head model always draws open eyes, because closed eyes are rare in the training photos. When MediaPipe's blink score is high **and** the lids are really close together (the score alone is fooled by glasses, caps and looking down), a closed eyelid is drawn on top: a soft patch of the restyled skin colour, sampled on the cheeks and forehead, plus a lash line. A single closed eye counts only as a clear wink while facing the camera. Eyes kept "closed" for more than 5 s are reopened, because that is someone reading, not a blink.
+6. Optionally (`?pixel=1`) apply a "pixel" filter (160² nearest-neighbour, 24 levels per channel, 4×4 Bayer dithering). It hides the remaining seams and costs 2–8 ms.
 
 All model calls go through a single queue, because the GPU runs one model at a time anyway.
 

@@ -77,7 +77,7 @@ def main():
         name, weights, n = v.split(":")
         size = name.split("+")[0]
         g = create(size, full_res_skip=False) if name.startswith("l") else create(size)
-        g.load_state_dict(convert_legacy_state_dict(torch.load(ROOT / weights, map_location="cpu")))
+        g.load_state_dict(convert_legacy_state_dict(torch.load(ROOT / weights, map_location="cpu", weights_only=True)))
         models.append((name, g.eval().to(dev), int(n)))
     det = mp.tasks.vision.FaceLandmarker.create_from_options(mp.tasks.vision.FaceLandmarkerOptions(
         base_options=mp.tasks.BaseOptions(model_asset_path=str(MODELS / "face_landmarker.task")),

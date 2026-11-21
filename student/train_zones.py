@@ -117,7 +117,7 @@ def main() -> None:
     (folder / "config.json").write_text(json.dumps({"size": args.size, "n": N, "epochs": args.epochs}))
     g = create(args.size).to(device)
     if args.init:
-        g.load_state_dict(convert_legacy_state_dict(torch.load(args.init, map_location=device)))
+        g.load_state_dict(convert_legacy_state_dict(torch.load(args.init, map_location=device, weights_only=True)))
     opt = torch.optim.AdamW(g.parameters(), lr=2e-3, weight_decay=1e-4)
     total_steps = args.epochs * (len(train) // args.batch)
     sched = torch.optim.lr_scheduler.OneCycleLR(opt, max_lr=2e-3, total_steps=total_steps)
