@@ -19,9 +19,9 @@ If you have been looking for any of the following, this repo shows how to do it 
 - a way to run a neural network on the GPU of a phone from a web page (WebGPU, LiteRT.js / TFLite);
 - a way to make a diffusion model (FLUX, Stable Diffusion…) fast enough for live video by distilling it into a tiny model.
 
-![Photo, teacher (diffusion, ~10–20 s per image) and student (~18 ms per head on an iPhone) on faces never seen during training](docs/images/teacher_vs_student.jpg)
+![16 faces never seen during training, restyled by the 8 MB model: bald heads, beards, moustaches, glasses, headscarves, caps, all ages and skin tones](docs/images/examples.jpg)
 
-<sub>Held-out faces from <a href="https://github.com/joojs/fairface">FairFace</a> (CC BY 4.0). Top: photo. Middle: teacher. Bottom: the distilled student that runs in the browser.</sub>
+<sub>Faces the model never saw during training, from <a href="https://github.com/joojs/fairface">FairFace</a> (CC BY 4.0). Right of each pair: the output of the 8 MB student, the same network that runs in the browser.</sub>
 
 ---
 
@@ -93,6 +93,10 @@ uv run --python 3.11 --with torch --with mediapipe --with opencv-python-headless
                   ~4,300 clean pairs ─► train student (L1 + VGG +                         ▼
                   PatchGAN + shift-consistency) ─► fuse BN ─► .tflite      optional pixel filter ─► screen
 ```
+
+Teacher vs student on held-out faces:
+
+![Photo, teacher (diffusion, 10–20 s per image) and student (~18 ms per head on an iPhone)](docs/images/teacher_vs_student.jpg)
 
 Full write-up: [docs/how-it-works.md](docs/how-it-works.md).
 
