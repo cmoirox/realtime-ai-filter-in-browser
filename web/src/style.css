@@ -1,0 +1,80 @@
+:root {
+  color-scheme: dark;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: #000;
+  color: #eee;
+  overflow: hidden;
+}
+#screen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+#video {
+  display: none;
+}
+#welcome {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  background: #111;
+}
+#welcome[hidden],
+#toolbar[hidden] {
+  display: none;
+}
+#welcome h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+#welcome p {
+  max-width: 32rem;
+  margin: 0;
+  color: #bbb;
+  line-height: 1.4;
+}
+button {
+  font: inherit;
+  padding: 0.7rem 1.4rem;
+  border: 0;
+  border-radius: 999px;
+  background: #2f9e5a;
+  color: #fff;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+#toolbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem calc(0.6rem + env(safe-area-inset-right)) calc(0.6rem + env(safe-area-inset-bottom)) calc(0.6rem + env(safe-area-inset-left));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+}
+#toolbar button {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.15);
+}
+#stats {
+  font-size: 0.8rem;
+  color: #ccc;
+  font-variant-numeric: tabular-nums;
+}

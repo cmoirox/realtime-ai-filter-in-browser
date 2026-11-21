@@ -1,0 +1,21 @@
+{
+  "name": "realtime-ai-filter-in-browser-web",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "models": "node scripts/fetch-models.mjs",
+    "runtime": "node scripts/copy-runtime.mjs",
+    "dev": "npm run runtime && vite",
+    "build": "npm run runtime && tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@litertjs/core": "2.6.0",
+    "@mediapipe/tasks-vision": "^0.10.21"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "8.3.8"
+  }
+}

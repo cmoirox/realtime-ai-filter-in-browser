@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+    <meta name="description" content="Real-time, on-device whole-head restyling in the browser: a tiny network distilled from a diffusion image-editing model, running with LiteRT.js on WebGPU." />
+    <title>Real-time AI Filter in the Browser: live demo</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <canvas id="screen"></canvas>
+    <video id="video" playsinline muted></video>
+
+    <section id="welcome">
+      <h1>Real-time AI Filter in the Browser</h1>
+      <p>A 2&nbsp;M-parameter network distilled from a diffusion image editor restyles every head in the camera feed, live, entirely on your device. Nothing is uploaded.</p>
+      <button id="start">Start camera</button>
+      <p id="message"></p>
+    </section>
+
+    <div id="toolbar" hidden>
+      <button id="compare">Hold to compare</button>
+      <button id="pixel">Pixel: on</button>
+      <button id="flip">Flip camera</button>
+      <span id="stats"></span>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

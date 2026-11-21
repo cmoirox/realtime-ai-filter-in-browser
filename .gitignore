@@ -1,0 +1,16 @@
+# data and third-party model weights: never committed (large, and photos of real people)
+data/
+models/
+runs/
+exports/
+
+# released weights live in GitHub Releases
+weights/*.pt
+weights/*.tflite
+weights/*.onnx
+
+# Python / OS
+__pycache__/
+*.pyc
+.venv/
+.DS_Store

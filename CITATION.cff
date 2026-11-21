@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Real-time AI Filter in the Browser: an on-device camera filter distilled from a diffusion image editor, running on WebGPU"
+type: software
+authors:
+  - name: "The Real-time AI Filter in the Browser contributors"
+repository-code: "https://github.com/cmoirox/realtime-ai-filter-in-browser"
+license: MIT
+version: 1.0.0
+date-released: 2026-11-21
+keywords:
+  - knowledge distillation
+  - diffusion distillation
+  - image-to-image translation
+  - real-time style transfer
+  - on-device inference
+  - WebGPU
+  - LiteRT
+  - mobile Safari
+  - face stylization
+  - FLUX
