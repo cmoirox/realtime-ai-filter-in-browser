@@ -2,6 +2,8 @@
 
 **Run an AI image model live on your phone's camera, entirely in the browser. No server, no app, no cost.**
 
+**▶ [Try it now in your browser](https://cmoirox.github.io/realtime-ai-filter-in-browser/)**
+
 A real-time AI camera filter that runs 100 % client-side with **WebGPU** (LiteRT.js), including in **mobile Safari on iPhone**. A 4-billion-parameter diffusion image editor (FLUX.2 klein 4B) was distilled into a 2-million-parameter network that restyles every person in the camera feed at 14–60 fps. Nothing leaves the device.
 
 If you have been looking for any of the following, this repo shows how to do it end to end, with the code, the weights and the measurements:
@@ -39,7 +41,9 @@ On the phone, face landmark detection costs more than the restyling network itse
 
 ## Try it
 
-**Live demo:** _coming soon_ (needs HTTPS for camera access; any static host works).
+### ▶ [Try the live demo](https://cmoirox.github.io/realtime-ai-filter-in-browser/)
+
+Open it on your phone (iPhone with Safari 26+, or a recent Android/desktop browser with WebGPU), tap **Start camera** and point the camera at people. Use **Flip camera** to restyle yourself. Everything runs on your device: no video is uploaded.
 
 Run it locally:
 
