@@ -1,10 +1,17 @@
 # Real-time AI Filter in the Browser
 
-**Run an AI image model live on your phone's camera, entirely in the browser. No server, no app, no cost.**
+**A generative AI model that restyles your face live, in your browser, with an 8 MB model.**
+15–60 fps on a phone · 100 % on-device (WebGPU) · no server, no app, no GPU cloud · 1,000× smaller than the diffusion model it was distilled from.
 
 **▶ [Try it now in your browser](https://cmoirox.github.io/realtime-ai-filter-in-browser/)**
 
-A real-time AI camera filter that runs 100 % client-side with **WebGPU** (LiteRT.js), including in **mobile Safari on iPhone**. A 4-billion-parameter diffusion image editor (FLUX.2 klein 4B) was distilled into a 2-million-parameter network that restyles every person in the camera feed at 14–60 fps. Nothing leaves the device.
+| | Teacher (diffusion) | **This model (in your browser)** |
+|---|---|---|
+| Size | ~8 GB (4 billion parameters) | **8 MB (2 million parameters)** |
+| Time per image | 10–20 s on a laptop GPU | **~18 ms on an iPhone, in Safari** |
+| Runs on | a computer with a strong GPU | **any WebGPU browser, phone included** |
+
+FLUX.2 klein 4B, a 4-billion-parameter diffusion image editor, was **distilled** into a tiny convolutional network that redraws every face in the camera feed in real time, entirely client-side with **WebGPU** (LiteRT.js), including **mobile Safari on iPhone**. Nothing leaves the device.
 
 If you have been looking for any of the following, this repo shows how to do it end to end, with the code, the weights and the measurements:
 
@@ -56,6 +63,13 @@ npm run dev        # open the printed URL; use a tunnel (e.g. cloudflared) or mk
 
 URL options: `?video=clip.mp4` (a file instead of the camera), `?pixel=1` (low-res "pixel" filter that hides seams), `?eyelids=0`, `?zones=0`, `?faces=3`.
 
+Offline, on a photo (same pipeline as the web demo):
+
+```bash
+uv run --python 3.11 --with torch --with mediapipe --with opencv-python-headless --with numpy \
+  python tools/restyle_photo.py photo.jpg --out out/ --side-by-side
+```
+
 Offline, on a video file (Python):
 
 ```bash
@@ -91,7 +105,7 @@ The pipeline doesn't depend on the look. Change the teacher prompt in [`teacher/
 ```
 teacher/   building the dataset: source photos, face crops, descriptions, diffusion restyling, quality control, splits
 student/   the network (model.py), training (train.py, train_zones.py), export to .tflite with an exactness check
-tools/     offline video demo
+tools/     offline demos on a photo or a video file
 web/       the browser demo (TypeScript + Vite, LiteRT.js, MediaPipe)
 weights/   released weights (attached to GitHub Releases, not committed)
 docs/      how it works, benchmarks, retraining guide
@@ -133,6 +147,10 @@ See [MODEL_CARD.md](MODEL_CARD.md) for data, intended use and bias notes.
 - Browser inference: [LiteRT.js](https://ai.google.dev/edge/litert/web) · face landmarks and teacher for the zones model: [MediaPipe](https://ai.google.dev/edge/mediapipe) (Apache 2.0).
 - Data: [COCO](https://cocodataset.org), [Wikimedia Commons](https://commons.wikimedia.org) (per-file credits are written by `teacher/download_wikimedia.py`), [FairFace](https://github.com/joojs/fairface) (CC BY 4.0).
 - Prior work this builds on: [E²GAN](https://arxiv.org/abs/2401.06127) (distilling diffusion editing into mobile GANs), [pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix), [animeganv3-browser](https://github.com/ldenoue/animeganv3-browser).
+
+## Contributing
+
+Contributions are welcome: new styles, faster or smaller models, device measurements, bug fixes. See [CONTRIBUTING.md](CONTRIBUTING.md) and the [open issues](https://github.com/cmoirox/realtime-ai-filter-in-browser/issues).
 
 ## License
 

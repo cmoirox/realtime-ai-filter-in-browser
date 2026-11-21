@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this work, please cite it as below."
-title: "Real-time AI Filter in the Browser: an on-device camera filter distilled from a diffusion image editor, running on WebGPU"
+title: "Real-time AI Filter in the Browser: an 8 MB generative face-restyling model distilled from a 4B diffusion model, running live on WebGPU"
 type: software
 authors:
   - name: "The Real-time AI Filter in the Browser contributors"
@@ -9,6 +9,9 @@ license: MIT
 version: 1.0.0
 date-released: 2026-11-21
 keywords:
+  - generative AI
+  - tiny model
+  - edge AI
   - knowledge distillation
   - diffusion distillation
   - image-to-image translation
